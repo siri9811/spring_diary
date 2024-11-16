@@ -13,12 +13,18 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-    private EntityManager em;
+    private final MemberRepository memberRepository;
 
     @Autowired
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+    //private EntityManager em;
+
+    /*@Autowired
     public SpringConfig(EntityManager em) {
         this.em = em;
-    }
+    }*/
 
 
     //Dependeny Injection -> 필드 주입, setter 주입 ,*생성자 주입* 3가지 방법 존재
@@ -26,14 +32,15 @@ public class SpringConfig {
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 // helloController -> MemberService -> MemberRepository
-    @Bean
+    /*@Bean
     public MemberRepository memberRepository() {
-        return new JpaMemberRepository(em);
+
+        //return new JpaMemberRepository(em);
         //return new JdbcTemplateMemberRepository(dataSource);
         //return new JdbcMemberRepository(dataSource);
-    }
+    }*/
 }
 

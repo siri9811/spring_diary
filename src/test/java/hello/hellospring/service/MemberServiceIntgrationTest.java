@@ -26,10 +26,12 @@ class MemberServiceIntgrationTest {
     void join() {
         //given
         Member member = new Member();
-        member.setName("hello");
+        member.setName("hello12");
+
         //when
         Long saveId = memberService.join(member);
         //then
+
         Member findmember = memberService.findOne(saveId).get();
         Assertions.assertThat(member.getName()).isEqualTo(findmember.getName());
     }
